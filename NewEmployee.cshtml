@@ -1,0 +1,59 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>NewEmployee</title>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div align="center">
+        @using (Html.BeginForm("NewEmployee", "Home", FormMethod.Post,
+            new { @class = "container", @style = "width:40%;text-align:left;",
+                @enctype = "multipart/form-data" }))
+        {
+            <div class="form-group">
+                <label for="EmpName" class="form-control-static">Employee Name</label>
+                @Html.TextBox("EmpName", "", new { @class="form-control"})
+                <label for="EmpName" class="text-danger">*</label>
+            </div>
+            <div class="form-group">
+                <label for="EmpCity" class="form-control-static">Employee City</label>
+                @Html.DropDownList("EmpCity", ViewBag.cities as List<SelectListItem>,
+               new { @class = "form-control" })
+                <label for="EmpName" class="text-danger">*</label>
+            </div>
+            <div class="form-group">
+                <label for="EmpGender" class="form-control-static">Employee Gender</label>
+                <label>Male:@Html.RadioButton("EmpGender","male",new { @id="rdb_male"})</label>
+                <label>Female:@Html.RadioButton("EmpGender", "female", new { @id = "rdb_female" })</label>
+                <label for="EmpGender" class="text-danger">*</label>
+            </div>
+            <div class="form-group">
+                <label for="EmpImg" class="form-control-static">Employee Image</label>
+                <input type="file" name="EmpImg" id="EmpImg" class="form-control" />
+                <label for="EmpImg" class="text-danger">*</label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="New Employee" class="btn-success" />
+                <br />
+                @ViewBag.msg
+                <br />
+                <img height="100px" width="200px" src=@ViewBag.address  />
+
+            </div>
+        }
+
+
+    </div>
+</body>
+</html>
